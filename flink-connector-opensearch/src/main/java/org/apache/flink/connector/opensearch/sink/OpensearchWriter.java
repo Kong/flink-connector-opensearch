@@ -27,7 +27,6 @@ import org.apache.flink.util.FlinkRuntimeException;
 import org.apache.flink.util.function.ThrowingRunnable;
 
 import org.apache.http.HttpHost;
-import org.opensearch.action.ActionListener;
 import org.opensearch.action.DocWriteRequest;
 import org.opensearch.action.bulk.BackoffPolicy;
 import org.opensearch.action.bulk.BulkItemResponse;
@@ -41,10 +40,11 @@ import org.opensearch.client.RequestOptions;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
 import org.opensearch.client.RestHighLevelClient;
-import org.opensearch.common.unit.ByteSizeUnit;
-import org.opensearch.common.unit.ByteSizeValue;
 import org.opensearch.common.unit.TimeValue;
-import org.opensearch.rest.RestStatus;
+import org.opensearch.core.action.ActionListener;
+import org.opensearch.core.common.unit.ByteSizeUnit;
+import org.opensearch.core.common.unit.ByteSizeValue;
+import org.opensearch.core.rest.RestStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,11 +84,11 @@ class OpensearchWriter<IN> implements SinkWriter<IN> {
      * @param hosts the reachable Opensearch cluster nodes
      * @param emitter converting incoming records to Opensearch actions
      * @param flushOnCheckpoint if true all until now received records are flushed after every
-     *     checkpoint
+     *         checkpoint
      * @param bulkProcessorConfig describing the flushing and failure handling of the used {@link
-     *     BulkProcessor}
+     *         BulkProcessor}
      * @param networkClientConfig describing properties of the network connection used to connect to
-     *     the Opensearch cluster
+     *         the Opensearch cluster
      * @param metricGroup for the sink writer
      * @param mailboxExecutor Flink's mailbox executor
      * @param restClientFactory Flink's mailbox executor

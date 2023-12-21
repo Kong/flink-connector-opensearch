@@ -20,9 +20,9 @@ package org.apache.flink.connector.opensearch.sink;
 
 import org.apache.flink.annotation.Internal;
 
-import org.opensearch.action.ActionListener;
 import org.opensearch.action.bulk.BulkRequest;
 import org.opensearch.action.bulk.BulkResponse;
+import org.opensearch.core.action.ActionListener;
 
 import java.util.function.BiConsumer;
 

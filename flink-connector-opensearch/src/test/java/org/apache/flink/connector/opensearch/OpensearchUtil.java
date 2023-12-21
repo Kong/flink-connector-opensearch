@@ -20,7 +20,6 @@ package org.apache.flink.connector.opensearch;
 
 import org.apache.flink.annotation.Internal;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.streaming.connectors.opensearch.RestClientFactory;
 import org.apache.flink.table.connector.sink.DynamicTableSink;
 import org.apache.flink.table.types.DataType;
 import org.apache.flink.table.types.logical.LogicalType;
@@ -96,20 +95,6 @@ public class OpensearchUtil {
                 RestClient.builder(HttpHost.create(container.getHttpHostAddress()))
                         .setHttpClientConfigCallback(
                                 createClientConfigCallback(username, password)));
-    }
-
-    /**
-     * Creates a preconfigured {@link RestClientFactory} instance for specific {@link
-     * OpensearchContainer} instance.
-     *
-     * @return preconfigured {@link RestClientFactory} instance
-     */
-    public static RestClientFactory createClientFactory(OpensearchContainer container) {
-        final String username = container.getUsername();
-        final String password = container.getPassword();
-
-        return factory ->
-                factory.setHttpClientConfigCallback(createClientConfigCallback(username, password));
     }
 
     /**
